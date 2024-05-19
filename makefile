@@ -1,21 +1,46 @@
-all: build/cv.pdf build/cv_eng.pdf
+NAME="Giampaolo_Guiducci"
+OUT=build
+CV=$(OUT)/CV_$(NAME)
 
-outdir:
-	mkdir -p build
+all: $(CV)_ITA.pdf $(CV)_EN.pdf $(CV)_ITA_DOB.pdf $(CV)_EN_DOB.pdf
+
+INFILE=cv.tex
+OUTFILE=cv.pdf
+OUTDIR=mkdir -p $(OUT)
+CLEAN_FLAGS=rm -f FLAG*
+COMPILE=tectonic $<
+MOVE_TO_DEST=mv $(OUTFILE) $@
 
 clean:
 	rm -rf build
-	rm FLAG*
+	$(CLEAN_FLAGS)
 
-build/cv.pdf: outdir cv.tex
-	tectonic cv.tex
-	mv cv.pdf $@
-	rm FLAG*
+$(CV)_ITA.pdf: $(INFILE)
+	$(OUTDIR)
+	$(COMPILE)
+	$(MOVE_TO_DEST)
+	$(CLEAN_FLAGS)
 
-build/cv_eng.pdf: outdir cv.tex
+$(CV)_EN.pdf: $(INFILE)
 	touch FLAGEN
-	tectonic cv.tex
-	mv cv.pdf $@
-	rm FLAG*
+	$(OUTDIR)
+	$(COMPILE)
+	$(MOVE_TO_DEST)
+	$(CLEAN_FLAGS)
 
-.PHONY: all clean outdir
+$(CV)_ITA_DOB.pdf: $(INFILE)
+	touch FLAGDOB
+	$(OUTDIR)
+	$(COMPILE)
+	$(MOVE_TO_DEST)
+	$(CLEAN_FLAGS)
+
+$(CV)_EN_DOB.pdf: $(INFILE)
+	touch FLAGEN
+	touch FLAGDOB
+	$(OUTDIR)
+	$(COMPILE)
+	$(MOVE_TO_DEST)
+	$(CLEAN_FLAGS)
+
+.PHONY: all clean
