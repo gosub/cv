@@ -11,6 +11,7 @@ jobs:
       - name: setup
         uses: wtfjoke/setup-tectonic@v3
         with:
+          tectonic-version: 0.15.0
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: build
         run: make all
