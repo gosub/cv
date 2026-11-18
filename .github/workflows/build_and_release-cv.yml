@@ -1,5 +1,12 @@
 name: publish-cv
-on: push
+on:
+  push:
+    # only changes to these files trigger a build + release
+    paths:
+      - 'cv.tex'
+      - 'src/**'
+      - 'makefile'
+      - '.github/workflows/build_and_release-cv.yml'
 
 jobs:
   build:
