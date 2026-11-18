@@ -1,0 +1,17 @@
+% language-dependent strings (FLAGEN present -> English, otherwise Italian)
+\IfFileExists{FLAGEN}{%
+  \newcommand{\cvaddress}{Rome, Italy}%
+  \newcommand{\cvdoblabel}{d.o.b.}%
+}{%
+  \newcommand{\cvaddress}{Roma, Italia}%
+  \newcommand{\cvdoblabel}{d.d.n.}%
+}
+
+\firstname{Giampaolo}
+\familyname{Guiducci}
+\title{\Large{\textsc{Security Software Engineer \break DevSecOps \& AI-Agent Tooling}}}
+\address{\cvaddress}
+\mobile{+39~349~3668324}
+\email{giampaolo.guiducci@gmail.com}
+\social[github][github.com/gosub]{https://github.com/gosub}
+\IfFileExists{FLAGDOB}{\extrainfo{\cvdoblabel: 1981-08-14}}{}
